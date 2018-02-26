@@ -1,0 +1,215 @@
+﻿<Window x:Class="MR_LAW_DB.openContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MR_LAW_DB"
+        mc:Ignorable="d"
+        Title="Contract" 
+        Height="600" 
+        Width="550" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+
+    <Grid x:Name="windowGrid">
+
+        <Grid.Background>
+            <ImageBrush 
+                    ImageSource="Assets/BackgroundFilled.png"
+                    Stretch="Uniform"/>
+
+        </Grid.Background>
+
+        <Button x:Name="uploadContract" 
+                Content="Upload Contract" 
+                HorizontalAlignment="Left" 
+                Margin="30,145,0,0" 
+                VerticalAlignment="Top" 
+                Width="140" 
+                Click="uploadClick">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Upload a PDF or word doc version of the contract</TextBlock>
+                        <TextBlock>Overwrites old uploaded contract if there is one</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="uploadTribal" 
+                Content="Upload New Tribal Sheet" 
+                HorizontalAlignment="Left" 
+                Margin="29,185,0,0" 
+                VerticalAlignment="Top" 
+                Width="140" 
+                Click="uploadClick">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Upload a PDF or word doc version of the Tribal cover sheet</TextBlock>
+                        <TextBlock>Overwrites old uploaded contract if there is one</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <TextBlock x:Name="uploadedContract" 
+                   HorizontalAlignment="Left" 
+                   Height="23" 
+                   Margin="180,145,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Width="180" 
+                   TextAlignment="Center"/>
+
+        <TextBlock x:Name="uploadedTribal" 
+                   HorizontalAlignment="Left"
+                   Height="23" 
+                   Margin="178,185,0,0" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Width="180" 
+                   TextAlignment="Center"/>
+
+        <TextBox x:Name="nameOfContractTextBox" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="10,26,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="160"/>
+
+        <TextBox x:Name="dateRecievedTextBox"
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="10,85,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+
+        <TextBlock x:Name="textBlock" 
+                   HorizontalAlignment="Left" 
+                   Margin="10,64,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Date Recieved:" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock x:Name="textBlock_Copy" 
+                   HorizontalAlignment="Left"
+                   Margin="142,64,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Date Completed:" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock x:Name="textBlock_Copy1" 
+                   HorizontalAlignment="Left"
+                   Margin="10,5,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Name of Contract:" 
+                   VerticalAlignment="Top"/>
+
+        <TextBox x:Name="noteTextBox" 
+                 HorizontalAlignment="Left" 
+                 Height="203" 
+                 Margin="28,295,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="485"/>
+
+        <TextBlock x:Name="textBlock_Copy2" 
+                   HorizontalAlignment="Left"
+                   Margin="30,274,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Notes:" 
+                   VerticalAlignment="Top"/>
+
+        <Button x:Name="saveContractToDataBase" 
+                Content="Save Contract" 
+                HorizontalAlignment="Left" 
+                Margin="351,524,0,0" 
+                VerticalAlignment="Top" 
+                Width="165" 
+                Click="updateDatabase">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Saves the changes that were made to the contract</TextBlock>
+                        <TextBlock>to the database</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="deleteContract" 
+                Content="Delete Contract" 
+                HorizontalAlignment="Left" 
+                Margin="30,524,0,0" 
+                VerticalAlignment="Top" 
+                Width="165" 
+                Click="deleteContractClick">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Deletes the contract from the database</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="openAsWordFile" 
+                Content="Open In Word" 
+                HorizontalAlignment="Left" 
+                Margin="209,524,0,0" 
+                VerticalAlignment="Top" 
+                Width="126" 
+                Click="openInWord">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Opens the contract in word</TextBlock>
+                        <TextBlock>Can be saved to the computer from word</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <ComboBox x:Name="attorneys" 
+                  HorizontalAlignment="Left" 
+                  Margin="30,239,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="160"/>
+
+        <TextBlock x:Name="textBlock_Copy3" 
+                   HorizontalAlignment="Left" 
+                   Margin="30,218,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Attorney:" 
+                   VerticalAlignment="Top"/>
+
+        <CheckBox x:Name="COI" 
+                  Content="Certificate Of Insurance" 
+                  HorizontalAlignment="Left"
+                  Margin="216,241,0,0" 
+                  VerticalAlignment="Top"/>
+        <Button x:Name="downloadContract" 
+                Content="Download Files" 
+                HorizontalAlignment="Left" 
+                Margin="373,27,0,0" 
+                VerticalAlignment="Top" 
+                Width="140"
+                Click="createFile">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Downloads the Uploaded Contract or Tribal Sheet</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+
+    </Grid>
+</Window>
+

@@ -1,0 +1,18 @@
+﻿<Window x:Class="MR_LAW_DB.Notes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MR_LAW_DB"
+        mc:Ignorable="d"
+        Title="Notes" Height="300" Width="300" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets\Background.png" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        <TextBox x:Name="notes" HorizontalAlignment="Left" Height="239" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293" Margin="0,32,0,-0.333"/>
+        <Button x:Name="save" Content="Save" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="75" Click="saveNotes"/>
+
+    </Grid>
+</Window>

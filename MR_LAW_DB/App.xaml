@@ -1,0 +1,17 @@
+﻿<Application x:Class="MR_LAW_DB.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MR_LAW_DB"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataGridTemplateColumn x:Key="ImageColumn" Header="Uploaded Contracts">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding 'UploadedContracts'}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,462 @@
+﻿<Window x:Class="MR_LAW_DB.secondWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MR_LAW_DB"
+        mc:Ignorable="d"
+        Title="Meson Recursion"  
+        Height="800" 
+        Width="900" 
+        Closing="closeOtherWindows"  
+        MinHeight="500" 
+        MinWidth="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="mainGrid">
+
+        <Grid.Background>
+
+            <ImageBrush 
+                ImageSource="Assets/Background_withlogo.png"  
+                Stretch="UniformToFill"/>
+
+        </Grid.Background>
+
+        <DataGrid x:Name="dataGrid" 
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding loadDataBinding}" 
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False" 
+                  CanUserResizeRows="False" 
+                  Margin="50,112,50,59" 
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                  RenderTransformOrigin="0.493,0.478" 
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  MinWidth="400"
+                  MinHeight="580"
+                  MinRowHeight="15"
+                  MaxColumnWidth="300"
+                  Width="780">
+
+            <DataGrid.Resources>
+
+                <Style TargetType="DataGridRow">
+                    <EventSetter 
+                        Event="MouseDoubleClick" 
+                        Handler="rowDoubleClick"/>
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <TextBlock>Double click to open this contract</TextBlock>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            
+            </DataGrid.Resources>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add Contract" Click="openNewContractWindow"/>
+                    <MenuItem Header="Edit Contract" Click="editContractClick"/>
+                    <MenuItem Header="Delete Contract" Click="deleteContract"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+
+                <DataGridTextColumn 
+                    Width="*" 
+                    IsReadOnly="True" 
+                    Header="Name" 
+                    Binding="{Binding 'name'}">
+                    <DataGridTextColumn.ElementStyle>
+
+                        <Style>
+
+                            <Setter 
+                                Property="TextBlock.TextWrapping" 
+                                Value="Wrap">
+                            </Setter>
+                            <Setter 
+                                Property="TextBlock.TextAlignment" 
+                                Value="Center">
+
+                            </Setter>
+
+                        </Style>
+
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn 
+                    
+                    Width="*" 
+                    IsReadOnly="True" 
+                    Header="Date Received" 
+                    Binding="{Binding 'DateReceived'}">
+
+                    <DataGridTextColumn.ElementStyle>
+
+                        <Style>
+
+                            <Setter 
+                                Property="TextBlock.TextWrapping" 
+                                Value="Wrap">
+                            </Setter>
+                            <Setter 
+                                Property="TextBlock.TextAlignment" 
+                                Value="Center">
+                            </Setter>
+
+                        </Style>
+
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn 
+                    
+                    Width="Auto" 
+                    IsReadOnly="True" 
+                    Header="Date Completed" 
+                    Binding="{Binding 'DateCompleted'}">
+
+                    <DataGridTextColumn.ElementStyle>
+
+                        <Style>
+
+                            <Setter 
+                                Property="TextBlock.TextWrapping" 
+                                Value="Wrap"></Setter>
+                            <Setter 
+                                Property="TextBlock.TextAlignment" 
+                                Value="Center"></Setter>
+
+                        </Style>
+
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn 
+                    
+                    Width="*" 
+                    IsReadOnly="True" 
+                    Header="Attorney" 
+                    Binding="{Binding 'Attorney'}">
+
+                    <DataGridTextColumn.ElementStyle>
+
+                        <Style>
+
+                            <Setter 
+                                Property="TextBlock.TextWrapping"
+                                Value="Wrap">
+
+                            </Setter>
+
+                            <Setter 
+                                Property="TextBlock.TextAlignment" 
+                                Value="Center">
+
+                            </Setter>
+
+                        </Style>
+
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
+                <DataGridCheckBoxColumn 
+                    
+                    Width="*" 
+                    IsReadOnly="True"
+                    Header="COI" 
+                    Binding="{Binding 'CertificateOfInsurance'}">
+
+                </DataGridCheckBoxColumn>
+
+                <DataGridTemplateColumn 
+                    Width="300" 
+                    IsReadOnly="True" 
+                    Header="Notes" >
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <Button Click="openNotes" Width="30">
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Notes</TextBlock>
+                                            <TextBlock>Open the notes for editing or viewing</TextBlock>
+                                        </StackPanel>
+                                    </ToolTip>
+                                </Button.ToolTip>
+                                <StackPanel>
+                                    <Image Source="Assets\NoteIcon.png"
+                                           Stretch="Fill"
+                                           Height="30"
+                                           Width="30"></Image>
+                                </StackPanel>
+                            </Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+        <Grid x:Name="secondGrid" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="257"></RowDefinition>
+                <RowDefinition Height="256*"></RowDefinition>
+                <RowDefinition Height="257*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Margin="219,69,35,149" 
+                    Click="openNewContractWindow" 
+                    Background="Transparent" 
+                    BorderBrush="AliceBlue">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">New Contract</TextBlock>
+                            <TextBlock>Opens a window to create a new contract</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets/AddContractButton.png" 
+                           Stretch="Fill"
+                           Height="29" 
+                           Width="29"
+                           />
+                </StackPanel>
+
+            </Button>
+
+
+
+            <TextBox x:Name="searchBox" 
+                     HorizontalAlignment="Left" 
+                     Margin="14,71,0,0" 
+                     TextWrapping="Wrap" 
+                     Text="Search" Width="234" 
+                     TextChanged="searchDataSet" 
+                     GotFocus="clearText" 
+                     LostFocus="setText" 
+                     Grid.Column="2" 
+                     Height="23" 
+                     VerticalAlignment="Top">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock>Search for a contract by Name, Attorney, or Date</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+
+            <TextBox x:Name="nameOfAttorneyAdd" 
+                     Visibility="Hidden"
+                     HorizontalAlignment="Left" 
+                     Height="23" Margin="89,57,0,0" 
+                     TextWrapping="Wrap" 
+                     Text="Name of Attorney" 
+                     VerticalAlignment="Top" 
+                     Width="120" 
+                     GotFocus="clearText" 
+                     LostFocus="setText" Grid.Column="1"/>
+
+            <TextBox x:Name="emailOfAttorney"
+                     Visibility="Hidden"
+                     HorizontalAlignment="Left" 
+                     Height="23" Margin="89,82,0,0" 
+                     TextWrapping="Wrap" 
+                     Text="Email Address" 
+                     VerticalAlignment="Top" 
+                     Width="120" 
+                     GotFocus="clearText" 
+                     LostFocus="setText" Grid.Column="1"/>
+
+            <Button x:Name="submitAttorney" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    BorderBrush="AliceBlue"
+                    Background="Transparent"
+                    Click="showAddAttorney" 
+                    Margin="261,69,0,0">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Add Attorney</TextBlock>
+                            <TextBlock>Add an Attorney with an email address</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets/AddAttoryneyIcon.png"
+                           Stretch="Fill"
+                           Width="30"
+                           Height="34"
+                           />
+                </StackPanel>
+            </Button>
+
+            <TextBox x:Name="nameOfAttorneyRemove" 
+                    Visibility="Hidden"
+                    HorizontalAlignment="Left" 
+                    Height="23" Margin="89,82,0,0" 
+                    TextWrapping="Wrap" 
+                    Text="Name of Attorney" 
+                    VerticalAlignment="Top" 
+                    Width="120" 
+                    GotFocus="clearText" 
+                    LostFocus="setText" 
+                    Grid.Column="1"/>
+
+            <Button x:Name="removeAttorney" 
+                    HorizontalAlignment="Left" 
+                    Margin="2,69,0,0" 
+                    VerticalAlignment="Top" 
+                    Click="showRemoveAttorney" 
+                    Grid.Column="1"
+                    Background="Transparent"
+                    BorderBrush="AliceBlue">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Remove Attorney</TextBlock>
+                            <TextBlock>Remove an Attorney by name</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets/RemoveAttoryneyIcon.png"
+                           Stretch="Fill"
+                           Width="30"
+                           Height="32"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="okButton"  
+                    Grid.Column="1"
+                    Visibility="Hidden"
+                    HorizontalAlignment="Left" 
+                    Margin="214,78,0,0" 
+                    VerticalAlignment="Top" 
+                    Background="Transparent"
+                    BorderBrush="AliceBlue"
+                    Click="addAttorneyToDatabase">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock>Submit new Attorney</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets\Button.png"
+                           Width="26"
+                           Height="26">
+
+                    </Image>
+                </StackPanel>
+            </Button>
+            <Button x:Name="cancelButton"
+                    Visibility="Hidden"
+                    Grid.ColumnSpan="2"
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    Margin="249,78,0,0" 
+                    VerticalAlignment="Top" 
+                    Background="Transparent"
+                    BorderBrush="AliceBlue"
+                    Click="clear">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock>Cancel adding or removing Attorney</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets\CancelButton.png"
+                           Height="26"
+                           Width="26">
+
+                    </Image>
+                </StackPanel>
+            </Button>
+            <Button x:Name="removeButton"
+                    Visibility="Hidden"
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    Margin="214,78,0,0" 
+                    VerticalAlignment="Top" 
+                    Background="Transparent"
+                    BorderBrush="AliceBlue"
+                    Click="removeAttorneyFromDatabase">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock>Remove the Attorney by name</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets\Button.png"
+                           Width="26"
+                           Height="26">
+
+                    </Image>
+                </StackPanel>
+            </Button>
+
+            <Label x:Name="label" 
+               Content="Copyright © Meson Recursion 2017 All Rights Reserved." 
+               HorizontalAlignment="Left" 
+               Margin="87,234,0,0" 
+               VerticalAlignment="Top"
+               FontSize="8" Grid.Column="2" Grid.Row="2"/>
+            <Button x:Name="settings"  
+                    HorizontalAlignment="Left" 
+                    Margin="181,69,0,0"
+                    Grid.Column="0" 
+                    VerticalAlignment="Top" 
+                    Click="openSettings"
+                    Background="Transparent"
+                    BorderBrush="AliceBlue">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Settings</TextBlock>
+                            <TextBlock>Opens the settings window</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Assets\Cog.png"
+                           Width="30"
+                           Height="32">
+
+                    </Image>
+                </StackPanel>
+            </Button>
+
+        </Grid>
+    </Grid>
+</Window>

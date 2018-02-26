@@ -1,0 +1,50 @@
+﻿<Window x:Class="MR_LAW_DB.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MR_LAW_DB"
+        mc:Ignorable="d"
+        Title="Settings" Height="316.591" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl x:Name="settingsTabs" 
+                    HorizontalAlignment="Left" 
+                    Height="287" 
+                    Margin="-1,-1,0,-2" 
+                    VerticalAlignment="Top" 
+                    Width="293">
+            <TabItem Header="Settings" Margin="-2,-2,-70,-1">
+                <Grid>
+                    <TextBlock x:Name="defaultEmail" HorizontalAlignment="Left" Margin="84,21,0,0" TextWrapping="Wrap" Text="Default Email Text" VerticalAlignment="Top"/>
+                    <TextBox x:Name="defaultEmailText" HorizontalAlignment="Left" Height="110" Margin="30,43,0,0" TextWrapping="Wrap" Text="A new contract has been assigned to you" VerticalAlignment="Top" Width="220"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Advanced Settings" Margin="68,-2,-107,-1">
+                <Grid>
+                    <TextBlock x:Name="whatIsIp" TextWrapping="Wrap" Text="Ip Address" Margin="112,24,111,215"/>
+                    <TextBlock x:Name="whatIsPort" TextWrapping="Wrap" Text="Port Number" Margin="125,73,132,166"/>
+                    <TextBlock x:Name="whatIsDatabase" TextWrapping="Wrap" Text="Database Name" Margin="111,118,121,121"/>
+                    
+
+                    <TextBox x:Name="IP" 
+                             HorizontalAlignment="Left" 
+                             Height="23" 
+                             Margin="80,46,0,0" 
+                             TextWrapping="Wrap" 
+                             Text="localhost" 
+                             VerticalAlignment="Top" 
+                             Width="120"/>
+                    <TextBox x:Name="port" HorizontalAlignment="Left" Height="23" Margin="80,92,0,0" TextWrapping="Wrap" Text="3306" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="database" Height="23" TextWrapping="Wrap" Text="law_firm" Width="120" Margin="80,137,83,95"/>
+
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
+        <Button x:Name="apply" Content="Apply" HorizontalAlignment="Left" Margin="198,248,0,0" VerticalAlignment="Top" Width="75" Click="applySettings"/>
+        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="113,248,0,0" VerticalAlignment="Top" Width="75" Click="Cancel_Click"/>
+
+    </Grid>
+</Window>

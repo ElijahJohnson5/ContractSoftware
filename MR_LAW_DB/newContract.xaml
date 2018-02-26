@@ -1,0 +1,162 @@
+﻿<Window x:Class="MR_LAW_DB.newContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MR_LAW_DB"
+        mc:Ignorable="d"
+        Height="360"
+        Width="460"
+        Title="New Contract"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/BackgroundFilled.png"
+                        Stretch="Fill"/>
+        </Grid.Background>
+        <TextBox x:Name="nameOfContract" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 TextWrapping="Wrap" 
+                 Text="Name of Contract" 
+                 VerticalAlignment="Top" 
+                 Width="182" 
+                 Margin="17,14,0,0" 
+                 GotFocus="clearText" 
+                 LostFocus="setText"/>
+
+        <DatePicker x:Name="received" 
+                    HorizontalAlignment="Left" 
+                    Margin="98,47,0,0" 
+                    VerticalAlignment="Top"/>
+
+        <DatePicker x:Name="completed" 
+                    HorizontalAlignment="Left" 
+                    Margin="327,48,0,0" 
+                    VerticalAlignment="Top"/>
+
+        <ComboBox x:Name="attorneys" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  Margin="77,97,0,0"
+                  IsReadOnly="True" 
+                  GotFocus="changeColor" 
+                  LostFocus="changeColorCheckText">
+            <ComboBox.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>List of Attorneys</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </ComboBox.ToolTip>
+        </ComboBox>
+
+        <CheckBox x:Name="certificateOfInsurance" 
+                  Content="Certificate of Insurance" 
+                  HorizontalAlignment="Left" 
+                  Margin="225,18,0,0" 
+                  VerticalAlignment="Top"/>
+
+        <TextBlock x:Name="dateRecieved" 
+                   HorizontalAlignment="Left" 
+                   Margin="18,51,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Date Recieved" 
+                   VerticalAlignment="Top"/>
+
+        <TextBlock x:Name="dateCompleted" 
+                   HorizontalAlignment="Left" 
+                   Margin="227,52,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Date Completed" 
+                   VerticalAlignment="Top"/>
+
+        <Button x:Name="uploadDocument" 
+                Content="Upload Contract" 
+                HorizontalAlignment="Left" 
+                Margin="211,98,0,0" 
+                VerticalAlignment="Top" 
+                Width="120" 
+                Click="uploadClick">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Upload a PDF or word doc version of the contract</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="tribalCoverSheet" 
+                Content="Tribal Cover Sheet" 
+                HorizontalAlignment="Left" 
+                Margin="211,126,0,0" 
+                VerticalAlignment="Top" 
+                Width="120" 
+                Click="uploadClick">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Upload a PDF or word doc version of a Tribal Cover Sheet</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <TextBox x:Name="extraNotes" 
+                 HorizontalAlignment="Left" 
+                 Height="119" 
+                 Margin="17,176,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="Notes" 
+                 VerticalAlignment="Top" 
+                 Width="303" 
+                 GotFocus="clearText" 
+                 LostFocus="setText"/>
+
+        <Button x:Name="submitNewContract" 
+                Content="Add Contract" 
+                HorizontalAlignment="Left" 
+                Margin="336,272,0,0" 
+                VerticalAlignment="Top" 
+                Width="92" 
+                Click="submitToDatabase">
+            <Button.ToolTip>
+                <ToolTip>
+                    <StackPanel>
+                        <TextBlock>Add contract to database</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <TextBlock x:Name="uploadedContractPath" 
+                   HorizontalAlignment="Left" 
+                   Margin="342,101,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="" 
+                   VerticalAlignment="Top" 
+                   Width="87" Height="17" />
+
+        <TextBlock x:Name="tribalCoverSheetPath" 
+                   HorizontalAlignment="Left" 
+                   Margin="343,129,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="" 
+                   VerticalAlignment="Top" 
+                   Width="84" Height="18" />
+
+        <TextBlock x:Name="textBlock" 
+                   HorizontalAlignment="Left" 
+                   Margin="23,97,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Attorney" 
+                   VerticalAlignment="Top" 
+                   Height="22" 
+                   Width="49" 
+                   FontSize="12"/>
+
+    </Grid>
+</Window>
